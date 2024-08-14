@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class Producto_repository {
+public class Producto_repository implements Producto_repository_Interface{
 
     private Sql2o sql2o;
 
@@ -118,7 +118,7 @@ public class Producto_repository {
 
     }
 
-    public boolean deleteProducto(Producto producto, int Codigo_Producto) {
+    public boolean deleteProducto(int Codigo_Producto) {
         String sql = "DELETE FROM public.\"Producto\" "
                 + "WHERE \"Codigo_Producto\" = :Codigo_Producto";
 

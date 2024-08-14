@@ -12,8 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@CrossOrigin
-@RestController
+@Service
 public class Producto_services {
 
     private Producto_repository producto_repository;
@@ -22,28 +21,25 @@ public class Producto_services {
         this.producto_repository = producto_repository;
     }
 
-    @GetMapping("/producto")
+
     public List<Producto> getAllProductos(){
         return producto_repository.getAllProductos();
     }
 
-    @GetMapping("/producto/buscar_codigo_producto/{Codigo_Producto}")
-    public List<Producto> getProductoByCodigo_Producto(@PathVariable int Codigo_Producto){
+
+    public List<Producto> getProductoByCodigo_Producto(int Codigo_Producto){
         return producto_repository.getProductosByCodigo_Producto(Codigo_Producto);
     }
 
-    @GetMapping("/producto/buscar_nombre_producto/{Nombre_Producto}")
-    public List<Producto> getProductoByNombre_Producto(@PathVariable String Nombre_Producto){
+    public List<Producto> getProductoByNombre_Producto(String Nombre_Producto){
         return producto_repository.getProductosByNombre_Producto(Nombre_Producto);
     }
 
-    @GetMapping("producto/buscar_categoria/{Categoria}")
-    public List<Producto> getProductoByCategoria(@PathVariable String Categoria){
+    public List<Producto> getProductoByCategoria( String Categoria){
         return producto_repository.getProductosByCategoria(Categoria);
     }
 
-    @PostMapping("/producto/crear")
-    public String crearProducto(@RequestBody Producto producto){
+    public String crearProducto(Producto producto){
 
         if(producto_repository.createProducto(producto)){
             return "Producto creada correctamente";
@@ -52,8 +48,7 @@ public class Producto_services {
             return "Error al crear el producto";
     }
 
-    @PutMapping("/producto/update")
-    public String updateProducto(@RequestBody Producto producto){
+    public String updateProducto(Producto producto){
         if(producto_repository.updateProducto(producto)){
             return "Producto modificada correctamente";
         }
@@ -62,10 +57,9 @@ public class Producto_services {
     }
 
 
-    @DeleteMapping("producto/delete/{Codigo_Producto}")
-    public String deleteProducto(@RequestBody Producto producto, @PathVariable int Codigo_Producto){
+    public String deleteProducto(int Codigo_Producto){
 
-            if(producto_repository.deleteProducto(producto,Codigo_Producto)){
+        if(producto_repository.deleteProducto(Codigo_Producto)){
             return "Producto eliminado correctamente";
         }
         else
