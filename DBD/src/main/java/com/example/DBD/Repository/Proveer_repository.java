@@ -56,7 +56,7 @@ public class Proveer_repository implements Proveer_repository_Interface{
                     .addParameter("Rut", proveer.getRut())
                     .addParameter("Codigo_Producto", proveer.getCodigo_Producto())
                     .addParameter("Unidades", proveer.getUnidades())
-                    .executeAndFetch(Proveer.class);
+                    .executeUpdate();
              return true;
         }
         catch (Exception e){
@@ -67,7 +67,8 @@ public class Proveer_repository implements Proveer_repository_Interface{
 
     public boolean updateProveer(Proveer proveer){
         String sql = "UPDATE public.\"Proveer\" " +
-                "SET \"Rut\"= :Rut, \"Codigo_Producto\"= :Codigo_Producto, \"Unidades\"= :Unidades";
+                "SET \"Unidades\"= :Unidades " +
+                "WHERE \"Rut\"= :Rut and  \"Codigo_Producto\"= :Codigo_Producto ";
 
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
