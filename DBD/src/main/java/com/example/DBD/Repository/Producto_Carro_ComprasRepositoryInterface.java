@@ -1,6 +1,6 @@
-package DBD.borradorMio.Repositories;
+package com.example.DBD.Repository;
 
-import DBD.borradorMio.Models.Producto_Carro_Compras;
+import com.example.DBD.Models.Producto_Carro_Compras;
 
 import java.util.List;
 

@@ -1,10 +1,7 @@
-package DBD.borradorMio.Servicies;
-import DBD.borradorMio.Models.Usuario;
-import DBD.borradorMio.Repositories.UsuarioRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+package com.example.DBD.Services;
+import com.example.DBD.Models.Usuario;
+import com.example.DBD.Repository.UsuarioRepository;
 import org.springframework.web.bind.annotation.*;
-import org.sql2o.Connection;
-import org.sql2o.Sql2o;
 
 import java.util.List;
 
@@ -54,5 +51,17 @@ public class UsuarioService {
         }else{
             return "Usuario no eliminado";
         }
+    }
+
+    public String loginUsuario(String correo, String contrasena){
+
+        if(usuarioRepository.loginUsuario(correo,contrasena) == null){
+            return "Usuario no encontrado";
+        }
+        else {
+            return "Usuario encontrado";
+        }
+
+       //return usuarioRepository.loginUsuario(correo, contrasena);
     }
 }

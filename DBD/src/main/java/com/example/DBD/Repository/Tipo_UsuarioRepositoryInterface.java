@@ -1,7 +1,6 @@
-package DBD.borradorMio.Repositories;
+package com.example.DBD.Repository;
 
-import DBD.borradorMio.Models.Tipo_Usuario;
-
+import com.example.DBD.Models.Tipo_Usuario;
 import java.util.List;
 
 public interface Tipo_UsuarioRepositoryInterface {

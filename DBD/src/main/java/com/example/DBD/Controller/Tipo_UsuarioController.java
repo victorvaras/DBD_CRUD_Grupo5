@@ -1,7 +1,7 @@
-package DBD.borradorMio.Controllers;
+package com.example.DBD.Controller;
 
-import DBD.borradorMio.Models.Tipo_Usuario;
-import DBD.borradorMio.Servicies.Tipo_UsuarioService;
+import com.example.DBD.Models.Tipo_Usuario;
+import com.example.DBD.Services.Tipo_UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

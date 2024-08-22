@@ -39,7 +39,7 @@ public class Producto_Deseado_controller {
         return producto_deseado_services.crearProducto_Deseado(producto_deseado);
     }
 
-    @PostMapping("/uptade")
+    @PutMapping("/uptade")
     public String uptateProducto_Deseado(@RequestBody Producto_Deseado producto_deseado) {
         return producto_deseado_services.updateProducto_Deseado(producto_deseado);
     }

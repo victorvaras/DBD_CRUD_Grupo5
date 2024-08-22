@@ -1,4 +1,4 @@
-package DBD.borradorMio.Models;
+package com.example.DBD.Models;
 
 public class Usuario {
     private String Rut;

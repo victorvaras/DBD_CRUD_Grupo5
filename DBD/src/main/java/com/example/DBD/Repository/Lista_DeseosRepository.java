@@ -1,5 +1,5 @@
-package DBD.borradorMio.Repositories;
-import DBD.borradorMio.Models.Lista_deseos;
+package com.example.DBD.Repository;
+import com.example.DBD.Models.Lista_deseos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;

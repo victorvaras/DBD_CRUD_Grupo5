@@ -39,7 +39,7 @@ public class Proveer_controller {
         return proveer_services.createProveer(proveer);
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public String updateProveer(@RequestBody Proveer proveer) {
         return proveer_services.updateProveer(proveer);
     }

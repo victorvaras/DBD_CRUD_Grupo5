@@ -1,7 +1,7 @@
-package DBD.borradorMio.Controllers;
+package com.example.DBD.Controller;
 
-import DBD.borradorMio.Models.Lista_deseos;
-import DBD.borradorMio.Servicies.Lista_DeseosService;
+import com.example.DBD.Models.Lista_deseos;
+import com.example.DBD.Services.Lista_DeseosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;

@@ -1,4 +1,4 @@
-package DBD.borradorMio.Models;
+package com.example.DBD.Models;
 
 public class Tipo_Usuario {
     private String Tipo;

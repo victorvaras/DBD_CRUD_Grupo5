@@ -1,7 +1,7 @@
-package DBD.borradorMio.Controllers;
+package com.example.DBD.Controller;
 
-import DBD.borradorMio.Models.Producto_Carro_Compras;
-import DBD.borradorMio.Servicies.Producto_Carro_ComprasService;
+import com.example.DBD.Models.Producto_Carro_Compras;
+import com.example.DBD.Services.Producto_Carro_ComprasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

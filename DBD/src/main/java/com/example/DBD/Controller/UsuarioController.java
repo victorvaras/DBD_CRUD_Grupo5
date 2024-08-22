@@ -1,7 +1,7 @@
-package DBD.borradorMio.Controllers;
+package com.example.DBD.Controller;
 
-import DBD.borradorMio.Models.Usuario;
-import DBD.borradorMio.Servicies.UsuarioService;
+import com.example.DBD.Models.Usuario;
+import com.example.DBD.Services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -60,5 +60,11 @@ public class UsuarioController {
     public String borrarUsuario(@PathVariable String Rut){
         String retorno = usuarioService.deleteUsuario(Rut);
         return retorno;
+    }
+
+    //iniciar sesión
+    @GetMapping("/login/{Correo}/{Contraseña}")
+    public String login(@PathVariable String Correo, @PathVariable String Contraseña){
+        return usuarioService.loginUsuario(Correo,Contraseña);
     }
 }

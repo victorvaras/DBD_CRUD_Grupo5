@@ -40,7 +40,7 @@ public class Valoracion_controller {
         return valoracion_services.createValoracion(valoracion);
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public String updateValoracion(@RequestBody Valoracion valoracion){
         return valoracion_services.updateValoracion(valoracion);
     }

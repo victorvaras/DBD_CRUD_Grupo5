@@ -1,7 +1,7 @@
-package DBD.borradorMio.Servicies;
+package com.example.DBD.Services;
 
-import DBD.borradorMio.Models.Lista_deseos;
-import DBD.borradorMio.Repositories.Lista_DeseosRepository;
+import com.example.DBD.Models.Lista_deseos;
+import com.example.DBD.Repository.Lista_DeseosRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

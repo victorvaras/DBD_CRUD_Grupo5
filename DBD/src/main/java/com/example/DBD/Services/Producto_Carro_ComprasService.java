@@ -1,6 +1,6 @@
-package DBD.borradorMio.Servicies;
-import DBD.borradorMio.Models.Producto_Carro_Compras;
-import DBD.borradorMio.Repositories.Producto_Carro_ComprasRepository;
+package com.example.DBD.Services;
+import com.example.DBD.Models.Producto_Carro_Compras;
+import com.example.DBD.Repository.Producto_Carro_ComprasRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

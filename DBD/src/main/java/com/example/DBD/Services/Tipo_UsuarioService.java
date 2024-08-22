@@ -1,6 +1,6 @@
-package DBD.borradorMio.Servicies;
-import DBD.borradorMio.Models.Tipo_Usuario;
-import DBD.borradorMio.Repositories.Tipo_UsuarioRepository;
+package com.example.DBD.Services;
+import com.example.DBD.Models.Tipo_Usuario;
+import com.example.DBD.Repository.Tipo_UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

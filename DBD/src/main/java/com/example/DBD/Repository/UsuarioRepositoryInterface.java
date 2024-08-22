@@ -1,6 +1,6 @@
-package DBD.borradorMio.Repositories;
+package com.example.DBD.Repository;
 
-import DBD.borradorMio.Models.Usuario;
+import com.example.DBD.Models.Usuario;
 
 import java.util.List;
 

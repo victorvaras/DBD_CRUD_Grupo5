@@ -1,5 +1,5 @@
-package DBD.borradorMio.Repositories;
-import DBD.borradorMio.Models.Usuario;
+package com.example.DBD.Repository;
+import com.example.DBD.Models.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
@@ -123,6 +123,25 @@ public class UsuarioRepository implements UsuarioRepositoryInterface {
         }catch(Exception e){
             System.out.println(e.getMessage());
             return false;
+        }
+    }
+
+
+    public Usuario loginUsuario(String Correo, String Contrasena) {
+        String sql = "select \"Nombre\"\n" +
+                "from    \"Usuario\"\n" +
+                "where \"Correo\" = :Correo\n" +
+                "    and  \"Contrasena\" = :Contrasena";
+        try(Connection con = sql2o.open()) {
+            return con.createQuery(sql)
+                    .addParameter("Correo", Correo)
+                    .addParameter("Contrasena", Contrasena)
+                    .executeAndFetchFirst(Usuario.class);
+
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 }
