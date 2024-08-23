@@ -20,14 +20,14 @@ public class Carro_Compra_repository implements Carro_Compra_repository_Interfac
     }
 
     public List<Carro_Compra> getAllCarros() {
-        String sql = "SELECT * FROM public.\"Carro_Compra\"";
+        String sql = "SELECT * FROM public.\"Carro_compras\"";
         try (Connection con = sql2o.open()) {
             return con.createQuery(sql).executeAndFetch(Carro_Compra.class);
         }
     }
 
     public List<Carro_Compra> getCarrosByID_Carro_Compra(int ID_Carro_Compra) {
-        String sql = "SELECT * FROM public.\"Carro_Compra\" WHERE \"ID_Carro_Compra\" = :ID_Carro_Compra";
+        String sql = "SELECT * FROM public.\"Carro_compras\" WHERE \"ID_Carro_de_Compras\" = :ID_Carro_Compra";
 
         try (var con = sql2o.open()) {
             return con.createQuery(sql)
@@ -37,7 +37,7 @@ public class Carro_Compra_repository implements Carro_Compra_repository_Interfac
     }
 
     public List<Carro_Compra> getCarrosByFecha(Date Fecha) {
-        String sql = "SELECT * FROM public.\"Carro_Compra\" WHERE \"Fecha\" = :Fecha";
+        String sql = "SELECT * FROM public.\"Carro_compras\" WHERE \"Fecha\" = :Fecha";
         try (Connection con = sql2o.open()) {
             return con.createQuery(sql)
                     .addParameter("Fecha", Fecha)
@@ -46,7 +46,7 @@ public class Carro_Compra_repository implements Carro_Compra_repository_Interfac
     }
 
     public List<Carro_Compra> getCarrosByMetodo_Pago(String Metodo_Pago) {
-        String sql = "SELECT * FROM public.\"Carro_Compra\" WHERE \"Metodo_Pago\" = :Metodo_Pago";
+        String sql = "SELECT * FROM public.\"Carro_compras\" WHERE \"Metodo_Pago\" = :Metodo_Pago";
         try (Connection con = sql2o.open()) {
             return con.createQuery(sql)
                     .addParameter("Metodo_Pago", Metodo_Pago)
@@ -55,22 +55,26 @@ public class Carro_Compra_repository implements Carro_Compra_repository_Interfac
     }
 
     public List<Carro_Compra> getCarrosByPrecio_Total_Carro(int Precio_Total_Carro) {
-        String sql = "SELECT * FROM public.\"Carro_Compra\" WHERE \"Precio_Total_Carro\" = :Precio_Total_Carro";
+        String sql = "SELECT * FROM public.\"Carro_compras\" WHERE \"Precio_Total_Carro\" = :Precio_Total_Carro";
         try (Connection con = sql2o.open()) {
             return con.createQuery(sql)
                     .addParameter("Precio_Total_Carro", Precio_Total_Carro)
                     .executeAndFetch(Carro_Compra.class);
         }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     public boolean createCarro_Compra(Carro_Compra carro_Compra) {
-        String sql = "INSERT INTO public.\"Carro_Compra\"(" +
-                "\"ID_Carro_Compra\", \"Fecha\", \"Metodo_Pago\", \"Precio_Total_Carro\")" +
-                "VALUES (:ID_Carro_Compra, :Fecha, :Metodo_Pago, :Precio_Total_Carro);";
+        String sql = "INSERT INTO public.\"Carro_compras\"(" +
+                "\"ID_Carro_de_Compras\", \"Fecha\", \"Metodo_Pago\", \"Precio_Total_Carro\")" +
+                "VALUES (:ID_Carro_Compra, :Fecha, :Metodo_Pago, :Precio_Total_Carro)";
 
         try (var con = sql2o.open()) {
             con.createQuery(sql)
-                    .addParameter("ID_Carro_Compra", carro_Compra.getID_Carro_Compra())
+                    .addParameter("ID_Carro_Compra", carro_Compra.getID_Carro_de_Compras())
                     .addParameter("Fecha", carro_Compra.getFecha())
                     .addParameter("Metodo_Pago", carro_Compra.getMetodo_Pago())
                     .addParameter("Precio_Total_Carro", carro_Compra.getPrecio_Total_Carro())
@@ -85,15 +89,15 @@ public class Carro_Compra_repository implements Carro_Compra_repository_Interfac
 
     public boolean updateCarro_Compra(Carro_Compra carro_Compra) {
 
-        String sql = "UPDATE public.\"Carro_Compra\" "
+        String sql = "UPDATE public.\"Carro_compras\" "
                 + "SET \"Fecha\" = :Fecha, "
                 + "\"Metodo_Pago\" = :Metodo_Pago, "
-                + "\"Precio_Total_Carro\" = :Precio_Total_Carro,"
-                + "WHERE \"ID_Carro_Compra\" = :ID_Carro_Compra;";
+                + "\"Precio_Total_Carro\" = :Precio_Total_Carro "
+                + "WHERE \"ID_Carro_de_Compras\" = :ID_Carro_Compra;";
 
         try (var con = sql2o.open()) {
             con.createQuery(sql)
-                    .addParameter("ID_Carro_Compra", carro_Compra.getID_Carro_Compra())
+                    .addParameter("ID_Carro_Compra", carro_Compra.getID_Carro_de_Compras())
                     .addParameter("Fecha", carro_Compra.getFecha())
                     .addParameter("Metodo_Pago", carro_Compra.getMetodo_Pago())
                     .addParameter("Precio_Total_Carro", carro_Compra.getPrecio_Total_Carro())
@@ -103,13 +107,14 @@ public class Carro_Compra_repository implements Carro_Compra_repository_Interfac
 
         }
         catch (Exception e){
+            System.out.println(e.getMessage());
             return false;
         }
     }
 
     public boolean deleteCarro_Compra(int ID_Carro_Compra) {
-        String sql = "DELETE FROM public.\"Carro_Compra\" "
-                + "WHERE \"ID_Carro_Compra\" = :ID_Carro_Compra;";
+        String sql = "DELETE FROM public.\"Carro_compras\" "
+                + "WHERE \"ID_Carro_de_Compras\" = :ID_Carro_Compra;";
 
         try (var con = sql2o.open()) {
             con.createQuery(sql)

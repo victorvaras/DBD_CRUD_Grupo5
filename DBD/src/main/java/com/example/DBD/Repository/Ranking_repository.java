@@ -1,6 +1,6 @@
 package com.example.DBD.Repository;
 
-import com.example.DBD.Models.Ranking;
+import com.example.DBD.Models.Ranking_de_Ventas;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
@@ -17,41 +17,47 @@ public class Ranking_repository implements Ranking_repository_Interface {
         this.sql2o = sql2o;
     }
 
-    public List<Ranking> getAllRankings() {
-        String sql = "SELECT * FROM public.\"Ranking\"";
+    public List<Ranking_de_Ventas> getAllRankings() {
+        String sql = "SELECT * FROM public.\"Ranking_de_Ventas\"";
         try (Connection con = sql2o.open()) {
-            return con.createQuery(sql).executeAndFetch(Ranking.class);
+            return con.createQuery(sql).executeAndFetch(Ranking_de_Ventas.class);
         }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+
     }
 
-    public List<Ranking> getRankingByID_Ranking(int ID_Ranking) {
-        String sql = "SELECT * FROM public.\"Ranking\" WHERE \"ID_Ranking\" = :ID_Ranking";
+    public List<Ranking_de_Ventas> getRankingByID_Ranking(int ID_Ranking) {
+        String sql = "SELECT * FROM public.\"Ranking_de_Ventas\" WHERE \"ID_Ranking\" = :ID_Ranking";
 
         try (var con = sql2o.open()) {
             return con.createQuery(sql)
                     .addParameter("ID_Ranking", ID_Ranking)
-                    .executeAndFetch(Ranking.class);
+                    .executeAndFetch(Ranking_de_Ventas.class);
         }
     }
 
-    public List<Ranking> getRankingByVentas(int Ventas) {
-        String sql = "SELECT * FROM public.\"Ranking\" WHERE \"Ventas\" = :Ventas";
+    public List<Ranking_de_Ventas> getRankingByVentas(int Ventas) {
+        String sql = "SELECT * FROM public.\"Ranking_de_Ventas\" WHERE \"Ventas\" = :Ventas";
         try (Connection con = sql2o.open()) {
             return con.createQuery(sql)
                     .addParameter("Ventas", Ventas)
-                    .executeAndFetch(Ranking.class);
+                    .executeAndFetch(Ranking_de_Ventas.class);
         }
     }
 
-    public boolean createRanking(Ranking ranking) {
-        String sql = "INSERT INTO public.\"Ranking\"(" +
-                "\"ID_Ranking\", \"Ventas\")" +
-                "VALUES (:ID_Ranking, :Ventas);";
+    public boolean createRanking(Ranking_de_Ventas rankingDeVentas) {
+        String sql = "INSERT INTO public.\"Ranking_de_Ventas\"(" +
+                "\"ID_Ranking\", \"Ventas\", \"ID_Boleta\")" +
+                "VALUES (:ID_Ranking, :Ventas, :ID_Boleta);";
 
         try (var con = sql2o.open()) {
             con.createQuery(sql)
-                    .addParameter("ID_Ranking", ranking.getID_Ranking())
-                    .addParameter("Ventas", ranking.getVentas())
+                    .addParameter("ID_Ranking", rankingDeVentas.getID_Ranking())
+                    .addParameter("Ventas", rankingDeVentas.getVentas())
+                    .addParameter("ID_Boleta", rankingDeVentas.getID_Boleta())
                     .executeUpdate();
             return true;
         }
@@ -61,15 +67,16 @@ public class Ranking_repository implements Ranking_repository_Interface {
         }
     }
 
-    public boolean updateRanking(Ranking ranking) {
-        String sql = "UPDATE public.\"Ranking\" "
-                + "SET \"Ventas\" = :Ventas, "
-                + "WHERE \"ID_Ranking\" = :ID_Ranking;";
+    public boolean updateRanking(Ranking_de_Ventas rankingDeVentas) {
+        String sql = "UPDATE public.\"Ranking_de_Ventas\" "
+                + "SET \"Ventas\" = :Ventas "
+                + "WHERE \"ID_Ranking\" = :ID_Ranking and \"ID_Boleta\" = :ID_Boleta";
 
         try (var con = sql2o.open()) {
             con.createQuery(sql)
-                    .addParameter("ID_Ranking", ranking.getID_Ranking())
-                    .addParameter("Ventas", ranking.getVentas())
+                    .addParameter("ID_Ranking", rankingDeVentas.getID_Ranking())
+                    .addParameter("Ventas", rankingDeVentas.getVentas())
+                    .addParameter("ID_Boleta", rankingDeVentas.getID_Boleta())
                     .executeUpdate();
 
             return true;
@@ -81,7 +88,7 @@ public class Ranking_repository implements Ranking_repository_Interface {
     }
 
     public boolean deleteRanking(int ID_Ranking) {
-        String sql = "DELETE FROM public.\"Ranking\" "
+        String sql = "DELETE FROM public.\"Ranking_de_Ventas\" "
                 + "WHERE \"ID_Ranking\" = :ID_Ranking;";
 
         try (var con = sql2o.open()) {

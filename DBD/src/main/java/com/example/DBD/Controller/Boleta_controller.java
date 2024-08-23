@@ -3,6 +3,7 @@ package com.example.DBD.Controller;
 import com.example.DBD.Models.Boleta;
 import com.example.DBD.Services.Boleta_services;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -31,7 +32,7 @@ public class Boleta_controller {
     }
 
     @GetMapping("/buscar_Fecha/{Fecha}")
-    public List<Boleta> getBoletaByFecha(@PathVariable Date Fecha) {
+    public List<Boleta> getBoletaByFecha(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd")Date Fecha) {
         return boleta_services.getBoletaByFecha(Fecha);
     }
 

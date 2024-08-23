@@ -3,21 +3,21 @@ package com.example.DBD.Models;
 import java.util.Date;
 
 public class Carro_Compra {
-    private int ID_Carro_Compra;
+    private int ID_Carro_de_Compras;
     private Date Fecha;
     private String Metodo_Pago;
     private int Precio_Total_Carro;
 
     public Carro_Compra(int ID_Carro_Compra, Date fecha, String metodo_Pago, int precio_Total_Carro) {
-        this.ID_Carro_Compra = ID_Carro_Compra;
+        this.ID_Carro_de_Compras = ID_Carro_Compra;
         Fecha = fecha;
         Metodo_Pago = metodo_Pago;
         Precio_Total_Carro = precio_Total_Carro;
     }
 
     // GETTERS:
-    public int getID_Carro_Compra() {
-        return ID_Carro_Compra;
+    public int getID_Carro_de_Compras() {
+        return ID_Carro_de_Compras;
     }
 
     public Date getFecha() {
@@ -33,8 +33,8 @@ public class Carro_Compra {
     }
 
     // SETTERS:
-    public void setID_Carro_Compra(int ID_Carro_Compra) {
-        this.ID_Carro_Compra = ID_Carro_Compra;
+    public void setID_Carro_de_Compras(int ID_Carro_de_Compras) {
+        this.ID_Carro_de_Compras = ID_Carro_de_Compras;
     }
 
     public void setFecha(Date fecha) {
@@ -52,7 +52,7 @@ public class Carro_Compra {
     @Override
     public String toString() {
         return "Carro_Compra{" +
-                ", ID_Carro_Compra = " + ID_Carro_Compra +
+                ", ID_Carro_Compra = " + ID_Carro_de_Compras +
                 ", Fecha = " + Fecha +
                 ", Metodo_Pago = " + Metodo_Pago +
                 ", Precio_Total_Carro = " + Precio_Total_Carro + '}';

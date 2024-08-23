@@ -7,14 +7,14 @@ public class Boleta {
     private Date Fecha;
     private int Precio_Total;
     private String Metodo_Pago;
-    private int ID_Carro_Compra;
+    private int ID_Carro_de_Compras;
 
     public Boleta(int ID_Boleta, Date fecha, int precio_Total, String metodo_Pago, int ID_Carro_Compra) {
         this.ID_Boleta = ID_Boleta;
         Fecha = fecha;
         Precio_Total = precio_Total;
         Metodo_Pago = metodo_Pago;
-        this.ID_Carro_Compra = ID_Carro_Compra;
+        this.ID_Carro_de_Compras = ID_Carro_Compra;
     }
 
     // GETTERS:
@@ -34,8 +34,8 @@ public class Boleta {
         return Metodo_Pago;
     }
 
-    public int getID_Carro_Compra() {
-        return ID_Carro_Compra;
+    public int getID_Carro_de_Compras() {
+        return ID_Carro_de_Compras;
     }
 
     // SETTERS:
@@ -55,8 +55,8 @@ public class Boleta {
         Metodo_Pago = metodo_Pago;
     }
 
-    public void setID_Carro_Compra(int ID_Carro_Compra) {
-        this.ID_Carro_Compra = ID_Carro_Compra;
+    public void setID_Carro_de_Compras(int ID_Carro_de_Compras) {
+        this.ID_Carro_de_Compras = ID_Carro_de_Compras;
     }
 
     @Override
@@ -66,6 +66,6 @@ public class Boleta {
                 ", Fecha = " + Fecha +
                 ", Precio_Total = " + Precio_Total +
                 ", Metodo_Pago = " + Metodo_Pago + '}' +
-                ", ID_Carro_Compra = " + ID_Carro_Compra+ '}';
+                ", ID_Carro_Compra = " + ID_Carro_de_Compras + '}';
     }
 }

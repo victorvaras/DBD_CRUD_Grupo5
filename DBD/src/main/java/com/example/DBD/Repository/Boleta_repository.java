@@ -24,6 +24,10 @@ public class Boleta_repository implements Boleta_repository_Interface{
         try (Connection con = sql2o.open()) {
             return con.createQuery(sql).executeAndFetch(Boleta.class);
         }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     public List<Boleta> getBoletaByID_Boleta(int ID_Boleta) {
@@ -32,6 +36,10 @@ public class Boleta_repository implements Boleta_repository_Interface{
             return con.createQuery(sql)
                     .addParameter("ID_Boleta", ID_Boleta)
                     .executeAndFetch(Boleta.class);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 
@@ -42,14 +50,22 @@ public class Boleta_repository implements Boleta_repository_Interface{
                     .addParameter("Fecha", Fecha)
                     .executeAndFetch(Boleta.class);
         }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     public List<Boleta> getBoletaByPrecio_Total(int Precio_Total) {
-        String sql = "SELECT * FROM public.\"Boleta\" WHERE \"Precio_Total\" = :Precio_Total";
+        String sql = "SELECT * FROM public.\"Boleta\" WHERE \"Precio_total\" = :Precio_Total";
         try (Connection con = sql2o.open()) {
             return con.createQuery(sql)
                     .addParameter("Precio_Total", Precio_Total)
                     .executeAndFetch(Boleta.class);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 
@@ -60,22 +76,30 @@ public class Boleta_repository implements Boleta_repository_Interface{
                     .addParameter("Metodo_Pago", Metodo_Pago)
                     .executeAndFetch(Boleta.class);
         }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     public List<Boleta> getBoletaByID_Carro_Compra(int ID_Carro_Compra) {
         String sql = "SELECT * FROM public.\"Boleta\" " +
-                "WHERE \"ID_Carro_Compra\" = :ID_Carro_Compra";
+                "WHERE \"ID_Carro_de_Compras\" = :ID_Carro_Compra";
 
         try (Connection con = sql2o.open()) {
             return con.createQuery(sql)
                     .addParameter("ID_Carro_Compra", ID_Carro_Compra)
                     .executeAndFetch(Boleta.class);
         }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     public boolean createBoleta(Boleta boleta) {
         String sql = "INSERT INTO public.\"Boleta\"(" +
-                "\"ID_Boleta\", \"Fecha\", \"Precio_Total\", \"Metodo_Pago\", \"ID_Carro_Compra\")" +
+                "\"ID_Boleta\", \"Fecha\", \"Precio_total\", \"Metodo_Pago\", \"ID_Carro_de_Compras\")" +
                 "VALUES (:ID_Boleta, :Fecha, :Precio_Total, :Metodo_Pago, :ID_Carro_Compra);";
 
         try (var con = sql2o.open()) {
@@ -84,7 +108,7 @@ public class Boleta_repository implements Boleta_repository_Interface{
                     .addParameter("Fecha", boleta.getFecha())
                     .addParameter("Precio_Total", boleta.getPrecio_Total())
                     .addParameter("Metodo_Pago", boleta.getMetodo_Pago())
-                    .addParameter("ID_Carro_Compra", boleta.getID_Carro_Compra())
+                    .addParameter("ID_Carro_Compra", boleta.getID_Carro_de_Compras())
                     .executeUpdate();
             return true;
         }
@@ -97,9 +121,9 @@ public class Boleta_repository implements Boleta_repository_Interface{
     public boolean updateBoleta(Boleta boleta) {
         String sql = "UPDATE public.\"Boleta\" "
                 + "SET \"Fecha\" = :Fecha, "
-                + "\"Precio_Total\" = :Precio_Total, "
-                + "\"Metodo_Pago\" = :Metodo_Pago , "
-                + "WHERE \"ID_Boleta\" = :ID_Boleta and \"ID_Carro_Compra\" = :ID_Carro_Compra";
+                + "\"Precio_total\" = :Precio_Total, "
+                + "\"Metodo_Pago\" = :Metodo_Pago  "
+                + "WHERE \"ID_Boleta\" = :ID_Boleta and \"ID_Carro_de_Compras\" = :ID_Carro_Compra";
 
         try (var con = sql2o.open()) {
             con.createQuery(sql)
@@ -107,20 +131,21 @@ public class Boleta_repository implements Boleta_repository_Interface{
                     .addParameter("Fecha", boleta.getFecha())
                     .addParameter("Precio_Total", boleta.getPrecio_Total())
                     .addParameter("Metodo_Pago", boleta.getMetodo_Pago())
-                    .addParameter("ID_Carro_Compra", boleta.getID_Carro_Compra())
+                    .addParameter("ID_Carro_Compra", boleta.getID_Carro_de_Compras())
                     .executeUpdate();
 
             return true;
 
         }
         catch (Exception e){
+            System.out.println(e.getMessage());
             return false;
         }
     }
 
     public boolean deleteBoleta(int ID_Boleta, int ID_Carro_Compra) {
         String sql = "DELETE FROM public.\"Boleta\" "
-                + "WHERE \"ID_Boleta\" = :ID_Boleta and \"ID_Carro_Compra\" = :ID_Carro_Compra";
+                + "WHERE \"ID_Boleta\" = :ID_Boleta and \"ID_Carro_de_Compras\" = :ID_Carro_Compra";
 
         try (var con = sql2o.open()) {
             con.createQuery(sql)
